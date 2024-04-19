@@ -11,7 +11,7 @@ class IslandCounter:
             and not visited[i][j]
             and self.graph[i][j]
         )
-    
+
 
     def dfs(self, i, j, visited):
         row_num = [-1, -1, -1, 0, 0, 1, 1, 1]

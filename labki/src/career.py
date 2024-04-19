@@ -16,6 +16,7 @@ def bfs(hierarchy):
     return max_experience
 
 
+
 with open("career.in", "r") as f:
     L = int(f.readline())
     hierarchy = []

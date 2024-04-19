@@ -19,3 +19,8 @@ root.left.right = TreeNode(5)
 root.left.right.right = TreeNode(4)
 root.left.right.left = TreeNode(6)
 print(sum_of_depths(root, 0))
+
+
+
+
+

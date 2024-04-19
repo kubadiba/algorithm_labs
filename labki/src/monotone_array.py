@@ -9,6 +9,7 @@ def monoton(array):
 
     return increasing or decreasing
 
+
 print(monoton([2, 2, 2, 2, 2]))
 print(monoton([2, 2, 2, 2, 3]))
-print(monoton([`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````` 2, 2, 2, 2, 1]))
+print(monoton([2, 2, 2, 2, 1]))

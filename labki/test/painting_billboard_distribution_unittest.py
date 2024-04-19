@@ -1,5 +1,5 @@
 import unittest
-from labka2_v2 import max_value
+from src.painting_billboard_distribution import max_value
 
 class TestMaxValueFunction(unittest.TestCase):
 

@@ -1,5 +1,5 @@
 import unittest
-from labka3_v2 import sum_of_depths, TreeNode
+from src.sum_of_depths import sum_of_depths, TreeNode
 
 
 class TestSum(unittest.TestCase):

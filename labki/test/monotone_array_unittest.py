@@ -1,5 +1,5 @@
 import unittest
-from labka1_v2 import monoton
+from src.monotone_array import monoton
 
 class TestMonoton(unittest.TestCase):
     """

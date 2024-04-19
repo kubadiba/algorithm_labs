@@ -23,7 +23,9 @@ def max_value(K, T, L):
 
 K = 2
 T = 5
-L = [10, 15, 10, 5, 10, 15, 20, 20, 15]
+L = [10, 15, 10,
+     5, 10, 15,
+     20, 20, 15]
 
 result = max_value(K, T, L)
 print("Результат:", result)

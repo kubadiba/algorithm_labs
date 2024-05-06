@@ -8,8 +8,3 @@ def monoton(array):
             increasing = False
 
     return increasing or decreasing
-
-
-print(monoton([2, 2, 2, 2, 2]))
-print(monoton([2, 2, 2, 2, 3]))
-print(monoton([2, 2, 2, 2, 1]))

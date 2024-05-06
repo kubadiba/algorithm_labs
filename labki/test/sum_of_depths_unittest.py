@@ -3,7 +3,7 @@ from src.sum_of_depths import sum_of_depths, TreeNode
 
 
 class TestSum(unittest.TestCase):
-    def test_sum1(self):
+    def test_sum(self):
         root = TreeNode(1)
         root.left = TreeNode(2)
         root.right = TreeNode(3)
@@ -12,8 +12,7 @@ class TestSum(unittest.TestCase):
         result = sum_of_depths(root)
         self.assertEqual(result, 5)
 
-
-    def test_sum1(self):
+    def test_sum_two(self):
         root = TreeNode(1)
         root.left = TreeNode(2)
         root.right = TreeNode(3)
@@ -23,4 +22,3 @@ class TestSum(unittest.TestCase):
         root.left.right.left = TreeNode(6)
         result = sum_of_depths(root)
         self.assertEqual(result, 9)
-

@@ -1,6 +1,7 @@
 import unittest
 from src.monotone_array import monoton
 
+
 class TestMonoton(unittest.TestCase):
     """
     Test case for the monotone function.
@@ -16,6 +17,7 @@ class TestMonoton(unittest.TestCase):
         self.assertFalse(monoton([1, 3, 2, 4, 5]))
         self.assertTrue(monoton([2]))
         self.assertTrue(monoton([]))
+
 
 if __name__ == '__main__':
     unittest.main()

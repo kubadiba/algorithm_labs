@@ -2,6 +2,7 @@ import unittest
 
 from src.bug_board_size_minimization import search_sq, verify_capacity
 
+
 class TestFindSquare(unittest.TestCase):
 
     def test_find_square(self):

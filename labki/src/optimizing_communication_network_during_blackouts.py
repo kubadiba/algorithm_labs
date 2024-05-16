@@ -2,7 +2,6 @@ import csv
 
 
 class Graph:
-
     def __init__(self, vertices):
         """
         Ініціалізує граф з заданою кількістю вершин.
@@ -24,13 +23,56 @@ class Graph:
         """
         self.edges.append([source, destination, weight])
 
+    def kruskal_minimum_spanning_tree(self):
+        """
+        Знаходить мінімальне остовне дерево за допомогою алгоритму Крускала.
+
+        Повертає:
+        int: Вага мінімального остовного дерева.
+        """
+        result = []
+        edge_index = 0
+        num_edges = 0
+
+        # Сортуємо ребра графа за вагою в порядку зростання
+        self.edges = sorted(self.edges, key=lambda item: item[2])
+
+        parent = []
+        rank = []
+
+        # Ініціалізуємо множини для кожної вершини
+        for node in range(self.vertices):
+            parent.append(node)
+            rank.append(0)
+
+        # Вибираємо ребра, поки не утворимо мінімальне остовне дерево
+        while num_edges < self.vertices - 1:
+            source, destination, weight = self.edges[edge_index]
+            edge_index += 1
+
+            root_source = self.find(parent, source)
+            root_destination = self.find(parent, destination)
+
+            if root_source != root_destination:
+                num_edges += 1
+                result.append([source, destination, weight])
+                self.union(parent, rank, root_source, root_destination)
+
+        minimum_spanning_tree_weight = 0
+        for source, destination, weight in result:
+            minimum_spanning_tree_weight += weight
+
+        return minimum_spanning_tree_weight
+
+
+class DisjointSet:
     def find(self, parent, vertex_index):
         """
         Знаходить корінь дерева, до якого належить вершина.
 
         Параметри:
-        parent (list): Вершина(корінь), з якого починається ребро
-        vertex_index (int): Індекс вершини                              # вершини якої?
+        parent (list): Список, що представляє батьків кожної вершини.
+        vertex_index (int): Індекс вершини, для якої шукається корінь.
 
         Повертає:
         int: Корінь дерева, до якого належить вершина з вказаним індексом.
@@ -39,54 +81,23 @@ class Graph:
             parent[vertex_index] = self.find(parent, parent[vertex_index])
         return parent[vertex_index]
 
-    def union(self, parent, rank, vertex_x, vertex_y):
+    def union(self, parent, rank, first_vertex, second_vertex):
         """
         Об'єднує два дерева в одне, враховуючи ранги.
 
         Параметри:
-        parent: представлення дерева
-        rank (list): Масив рангів вершин.            # ???
-        vertex_x (int): Перша вершина.               # замість x можна написати first_vertex(більш зрозуміло)
-        vertex_y (int): Друга вершина.               # так само можна second_vertex
+        parent (list): Список, що представляє батьків кожної вершини.
+        rank (list): Масив рангів вершин.
+        first_vertex (int): Перша вершина.
+        second_vertex (int): Друга вершина.
         """
-        if rank[vertex_x] < rank[vertex_y]:          # для чого ми використовуємо rang у деревах?
-            parent[vertex_x] = vertex_y
-        elif rank[vertex_x] > rank[vertex_y]:
-            parent[vertex_y] = vertex_x
+        if rank[first_vertex] < rank[second_vertex]:
+            parent[first_vertex] = second_vertex
+        elif rank[first_vertex] > rank[second_vertex]:
+            parent[second_vertex] = first_vertex
         else:
-            parent[vertex_y] = vertex_x
-            rank[vertex_x] += 1
-
-    def kruskal_minimum_spanning_tree(self):
-        """
-        Знаходить мінімальне остовне дерево за допомогою алгоритму Крускала.
-        key=lambda item: item[2]: : Список ребер графа сортується за їх вагою в порядку зростання.
-
-        Повертає:
-        int: Вага мінімального остовного дерева.
-        """
-        result = []
-        edge_index = 0
-        num_edges = 0
-        self.edges = sorted(self.edges, key=lambda item: item[2])
-        parent = []                                                # що таке parent в коді?
-        rank = []
-        for node in range(self.vertices):
-            parent.append(node)
-            rank.append(0)
-        while num_edges < self.vertices - 1:
-            source, destination, weight = self.edges[edge_index]
-            edge_index += 1
-            vertex_source = self.find(parent, source)              # замість source можна first
-            vertex_destination = self.find(parent, destination)    # замість destination краще second
-            if vertex_source != vertex_destination:
-                num_edges += 1
-                result.append([source, destination, weight])
-                self.union(parent, rank, vertex_source, vertex_destination)
-        minimum_cost = 0                            # краще було б написати minimum_spanning_tree або minimum_tree замість cost
-        for source, destination, weight in result:
-            minimum_cost += weight
-        return minimum_cost
+            parent[second_vertex] = first_vertex
+            rank[first_vertex] += 1
 
 
 def read_communication_wells(filename):
@@ -120,6 +131,8 @@ def kruskal_minimum_spanning_tree(graph):
     """
     well_indices = {}
     num_wells = 0
+
+    # Присвоюємо індекси кожному колодязю
     for edge in graph:
         if edge[0] not in well_indices:
             well_indices[edge[0]] = num_wells
@@ -129,9 +142,13 @@ def kruskal_minimum_spanning_tree(graph):
             num_wells += 1
 
     g = Graph(num_wells)
+    ds = DisjointSet()
     for edge in graph:
         source, destination, weight = edge[0], edge[1], edge[2]
-        vertex_source, vertex_destination = well_indices[source], well_indices[destination]
+        vertex_source, vertex_destination = (
+            well_indices[source],
+            well_indices[destination],
+        )
         g.add_edge(vertex_source, vertex_destination, weight)
 
     min_cost = g.kruskal_minimum_spanning_tree()

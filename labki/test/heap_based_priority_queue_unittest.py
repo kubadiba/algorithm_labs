@@ -1,6 +1,7 @@
 import unittest
 from src.heap_based_priority_queue import MaxHeap, PriorityNode
 
+
 class TestMaxHeap(unittest.TestCase):
     def test_insert_and_remove(self):
         heap = MaxHeap()
@@ -12,6 +13,7 @@ class TestMaxHeap(unittest.TestCase):
         self.assertEqual(heap.remove(), 3)
         self.assertIsNone(heap.remove())
 
+
 class TestPriorityNode(unittest.TestCase):
     def test_insert_and_remove(self):
         priority_node = PriorityNode()
@@ -22,6 +24,7 @@ class TestPriorityNode(unittest.TestCase):
         self.assertEqual(priority_node.remove(), 'task1')
         self.assertEqual(priority_node.remove(), 'task2')
         self.assertIsNone(priority_node.remove())
+
 
 if __name__ == '__main__':
     unittest.main()

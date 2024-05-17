@@ -1,6 +1,7 @@
 import unittest
 from src.heap_based_priority_queue import MaxHeap, PriorityNode
 
+
 class TestMaxHeap(unittest.TestCase):
 
     def test_insert(self):
@@ -51,6 +52,7 @@ class TestPriorityNode(unittest.TestCase):
         priority_node.insert('task2', 3)
         priority_node.insert('task3', 2)
         self.assertEqual(priority_node.heap.heap, [(3, 'task2'), (1, 'task1'), (2, 'task3')])
+
 
 
 if __name__ == '__main__':

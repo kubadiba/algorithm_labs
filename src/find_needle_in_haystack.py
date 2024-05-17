@@ -39,4 +39,6 @@ def knuth_morris_pratt(needle, haystack):
                 j = prefix[j - 1]
             else:
                 i += 1
+
     return result
+

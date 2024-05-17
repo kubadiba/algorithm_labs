@@ -16,11 +16,7 @@ class TestBFS(unittest.TestCase):
 
     def test_case_2(self):
         hierarchy = [
-            [1],
-            [2, 3],
-            [4, 5, 6],
-            [7, 8, 9, 10]
-        ]
+
         expected = 20
         result = bfs(hierarchy)
         self.assertEqual(result, expected)
@@ -29,3 +25,10 @@ class TestBFS(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+=======
+        self.assertEqual(max_experience(hierarchy2), 22)
+
+
+if __name__ == '__main__':
+    unittest.main()
+

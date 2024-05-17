@@ -17,12 +17,12 @@ def bfs(hierarchy):
 
 
 
-with open("source/career.in", "r") as f:
+with open("../source/career.in", "r") as f:
     L = int(f.readline())
     hierarchy = []
     for _ in range(L):
         hierarchy.append(list(map(int, f.readline().split())))
 
 max_exp = bfs(hierarchy)
-with open("source/career.out", "w") as f:
+with open("../source/career.out", "w") as f:
     f.write(str(max_exp))

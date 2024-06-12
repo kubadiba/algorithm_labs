@@ -1,27 +1,34 @@
 import unittest
-from src.career import max_experience
+from src.career import bfs
 
 
-class TestMaxExperience(unittest.TestCase):
-    def test_max_experience(self):
-        # Test case 1
-        hierarchy1 = [
+class TestBFS(unittest.TestCase):
+
+    def test_case_1(self):
+        hierarchy = [
             [3],
             [7, 4],
-            [2, 4, 6],
-            [8, 5, 9, 3]
+            [2, 4, 6]
         ]
-        self.assertEqual(max_experience(hierarchy1), 23)
+        expected = 14
+        result = bfs(hierarchy)
+        self.assertEqual(result, expected)
 
-        # Test case 2
-        hierarchy2 = [
-            [1],
-            [2, 3],
-            [4, 5, 6],
-            [7, 8, 9, 10]
-        ]
+    def test_case_2(self):
+        hierarchy = [
+
+        expected = 20
+        result = bfs(hierarchy)
+        self.assertEqual(result, expected)
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+=======
         self.assertEqual(max_experience(hierarchy2), 22)
 
 
 if __name__ == '__main__':
     unittest.main()
+
